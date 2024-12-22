@@ -1,0 +1,22 @@
+<header>
+    <nav class="bg-cyan-500">
+        <ul class="flex items-center p-3 justify-between">
+           <div class="flex ">
+                <li class="mr-[10px] hover:text-white">
+                    <a href=" {% url 'home' %}">Home</a>
+                </li>
+                <li class="mr-[10px] hover:text-white">
+                    <a href="{% url 'add_product' %}">Add product</a>
+                </li>
+           </div>
+           <div class="flex">
+                <li class="mr-[10px] hover:text-white">
+                    <a href=" {% url 'home' %}">Login</a>
+                </li>
+                <li class="mr-[10px] hover:text-white">
+                    <a href="{% url 'add_product' %}">Register</a>
+                </li>
+           </div>
+        </ul>
+    </nav>
+</header>

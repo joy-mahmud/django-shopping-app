@@ -5,41 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shopping-home</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/styles.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/styles.css' %}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header>
-        <nav class="header">
-            <ul class="flex items-center bg-slate-300 p-3 justify-between">
-               <div class="flex ">
-                    <li class="mr-[10px] hover:color-blue-400">
-                        <a href=" {% url 'home' %}">Home</a>
-                    </li>
-                    <li class="mr-[10px] hover:color-blue">
-                        <a href="{% url 'add_product' %}">Add product</a>
-                    </li>
-               </div>
-               <div class="flex">
-                    <li class="mr-[10px] hover:color-blue-400">
-                        <a href=" {% url 'home' %}">Login</a>
-                    </li>
-                    <li class="mr-[10px] hover:color-blue">
-                        <a href="{% url 'add_product' %}">Register</a>
-                    </li>
-               </div>
-            </ul>
-        </nav>
-    </header>
+  {% include "main/menu.html" %}
 
     <div>
         <h2 class="text-center font-semibold text-xl my-5">All products</h2>
-      <div class="flex gap-5 justify-center">
+      <div class="flex gap-5 justify-center flex-wrap">
         {% for product in products %}
-        <div class="border-[2px] border-slate-500 rounded-lg p-5">
-            <p>name: {{product.name}}</p>
-            <p>price:{{product.price}}</p>
-            <p>quantity:{{product.quantity}}</p>
+        <div class="border border-slate-500 rounded-lg shadow-lg w-[250px] bg-yellow-600">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class='w-full h-[200px] rounded-tr-lg rounded-tl-lg'>
+            {% else %}
+            <p>No image</p>
+            {% endif %}
+         
+           <div class="p-4 text-white">
+                <p>name: {{product.name}}</p>
+                <p>price:{{product.price}}</p>
+                <p>quantity:{{product.quantity}}</p>
+           </div>
         </div>
         
         {% endfor %}

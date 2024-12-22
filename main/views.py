@@ -14,7 +14,7 @@ def home(request):
 
 def add_product(request):
     if request.method=="POST":
-        form=AddProduct(request.POST)
+        form=AddProduct(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             
