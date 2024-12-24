@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product-details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="">
+    {% include "main/menu.html" %}
+    <h2 class="text-center font-bold text-4xl mt-10">Product details:</h2>
+    <div class="max-w-3xl p-5 bg-white shadow-md mt-10 rounded-lg mx-auto">
+        <img src="{{product.image.url}}" alt="product.name" class="w-full h-64">
+        <div class="mt-1o">
+            <h1 class="text-2xl text-green-600 font-semibold">{{product.name}}</h1>
+            <p class="text-[18px] font-medium">price: {{product.price}}</p>
+           {% comment %} <a href="http://127.0.0.1:8000/addToCart?product_id={{product.id}}">
+            <button  class="bg-green-500 px-4 py-2 mt-5 rounded-md font-semibold text-xl">Add to Cart</button>
+           </a> {% endcomment %}
+
+            <button onclick="handleAddToCart({{ product.id }})" class="bg-green-500 px-4 py-2 mt-5 rounded-md font-semibold text-xl">Add to Cart</button>
+
+        </div>
+    </div>
+  </div>
+<script>
+   function handleAddToCart(id){
+    fetch('http://127.0.0.1:8000/addToCart/',{
+        method:'POST',
+        headers:{
+            'content-Type':'application/json'
+        },
+        body:JSON.stringify({product_id:id})
+    })
+    .then(response => alert('product added to cart'))
+    .catch(error => console.log(error))
+   }
+</script>
+</body>
+</html>

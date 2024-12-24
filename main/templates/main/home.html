@@ -15,7 +15,9 @@
         <h2 class="text-center font-semibold text-xl my-5">All products</h2>
       <div class="flex gap-5 justify-center flex-wrap">
         {% for product in products %}
+    
         <div class="border border-slate-500 rounded-lg shadow-lg w-[250px] bg-yellow-600">
+          <a href="productDetails/{{product.id}}">
             {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.name }}" class='w-full h-[200px] rounded-tr-lg rounded-tl-lg'>
             {% else %}
@@ -25,10 +27,14 @@
            <div class="p-4 text-white">
                 <p>name: {{product.name}}</p>
                 <p>price:{{product.price}}</p>
-                <p>quantity:{{product.quantity}}</p>
+          
+           
+      
            </div>
+          </a>
+
         </div>
-        
+   
         {% endfor %}
       </div>
     </div>
