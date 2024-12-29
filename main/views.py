@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .forms import AddProduct
-from .models import Product,Cart,CartItems
+from .models import Product,Cart,CartItem
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -47,12 +47,12 @@ def add_to_cart(request):
         product = Product.objects.get(id=product_id)
         cart,created = Cart.objects.get_or_create(user=request.user)
         
-        cart_item,item_created= CartItems.objects.get_or_create(cart=cart,product=product)
+        cart_item,item_created= CartItem.objects.get_or_create(cart=cart,product=product)
         if not item_created :
             cart_item.quantity+=1
             cart_item.save()
-            return HttpResponse('product  added to cart successfully')
-        
+            
+        return HttpResponse('product added to cart')
     # cart=Cart(product_id=id)
     # cart.save()
     

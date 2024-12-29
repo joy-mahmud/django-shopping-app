@@ -33,8 +33,9 @@
         },
         body:JSON.stringify({product_id:id})
     })
-    .then(response => alert('product added to cart'))
-    .catch(error => console.log(error))
+    .then(response => alert('product added to cart successfully'))
+   
+    .catch(error => console.error(error));
    }
 </script>
 </body>
