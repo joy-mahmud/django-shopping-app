@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    {% include "main/menu.html" %}
+   <div class="container mx-auto py-8">
+    <h2 class="text-2xl font-bold mb-6 text-center">My cart</h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        {% if items %}
+            <table class="w-full table-auto">
+                <thead>
+                   <tr>
+                        <th class="text-left py-2">Product</th>
+                        <th class="text-left py-2">Quantity</th>
+                        <th class="text-left py-2">Price</th>
+                        <th class="text-left py-2">Total</th>
+                   </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{item.product.name}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>${{item.product.price}}</td>
+                        <td>${{item.item_total}}</td>
+                    </tr>
+                   
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="mt-6 text-right">
+                <h2 class="font-semibold text-2xl">Total price:${{total_price}}</h2>
+            </div>
+            {% else %}
+            <p class="text-gray-600 font-semibold">Your cart is empty</p>
+        {% endif %}
+
+    </div>
+   </div>
+</body>
+</html>
