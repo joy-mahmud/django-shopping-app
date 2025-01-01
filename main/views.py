@@ -3,6 +3,7 @@ from django.http import HttpResponse,JsonResponse
 from .forms import AddProduct
 from .models import Product,Cart,CartItem
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 import json
 from django.db.models import Sum,F
 
@@ -40,11 +41,13 @@ def product_details(request,id):
     return render(request,'main/product_details.html',context)
 
 @csrf_exempt
-def add_to_cart(request):
+@login_required
+def add_to_cart(request,product_id):
     # id=request.GET.get('product_id')
-    if request.method=="POST":
-        body=json.loads(request.body)
-        product_id=body.get('product_id')
+    #if request.method=="POST":
+    if request.method=="GET":
+        # body=json.loads(request.body)
+        # product_id=body.get('product_id')
         product = Product.objects.get(id=product_id)
         cart,created = Cart.objects.get_or_create(user=request.user)
         print(created)
@@ -54,11 +57,12 @@ def add_to_cart(request):
         if not item_created :
             cart_item.quantity+=1
             cart_item.save()
-            
-        return JsonResponse({'redirect_url':'http://127.0.0.1:8000/cart/'})
+         
+        return redirect('cart')   
+        #return JsonResponse({'redirect_url':'http://127.0.0.1:8000/cart/'})
     # cart=Cart(product_id=id)
     # cart.save()
-    
+@login_required  
 def view_cart(request):
     cart,created=Cart.objects.get_or_create(user=request.user)
     items=cart.items.select_related('product').annotate(
