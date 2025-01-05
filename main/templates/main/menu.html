@@ -13,15 +13,23 @@
                 </li>
            </div>
            <div class="flex">
-                <li class="mr-[10px] hover:text-white">
-                    <a href=" {% url 'home' %}">Login</a>
-                </li>
-                <li class="mr-[10px] hover:text-white">
-                    <a href="{% url 'add_product' %}">Register</a>
-                </li>
-                <li class="mr-[10px] hover:text-white">
-                    <a href="{% url 'logout' %}">Logout</a>
-                </li>
+            {% if request.user.is_authenticated %}
+            <span class="mr-5">welcome! {{request.user.username}}</span>
+            <li class="mr-[10px] hover:text-white">
+                
+                <a href="{% url 'logout' %}">Logout</a>
+            </li> 
+            {% else %}
+               <div class="flex gap-3">
+                    <li class="mr-[10px] hover:text-white">
+                        <a href=" {% url 'home' %}">Login</a>
+                    </li>
+                    <li class="mr-[10px] hover:text-white">
+                        <a href="{% url 'register' %}">Register</a>
+                    </li>
+               </div>
+               
+                {% endif %}
            </div>
         </ul>
     </nav>
