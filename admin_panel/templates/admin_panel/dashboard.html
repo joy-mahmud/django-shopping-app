@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dasgboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    {% include "main/menu.html" %}
+  <div class="flex">
+    {% include "admin_panel/sidebar.html" %}
+    <div class="w-full overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <th class="py-3 px-5 text-left">Name</th>
+                    <th class="py-3 px-5 text-left">Price</th>
+                    <th class="py-3 px-5 text-left">Quantity</th>
+                    <th class="py-3 px-5 text-left">Image</th>
+                    <th class="py-3 px-5 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td class="py-3 px-5 text-left">{{product.name}}</td>
+                        <td class="py-3 px-5 text-left">{{product.price}}</td>
+                        <td class="py-3 px-5 text-left">{{product.quantity}}</td>
+                        <td class="py-3 px-5 text-left">
+                            {% if product.image %}
+                                <img src="{{product.image.url}}" alt="Product Image" class="h-10 w-10 rounded">
+                            {% endif %}
+                        </td>
+                        <td class="py-3 px-5">
+                            <div class="flex items-center gap-4">
+                                <a href="" class="text-green-600 hover:text-800">update</a>
+                                <form action="" method="post">
+                                    <button type="submit" class="text-red-600 hover:red-800">delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+</body>
+</html>
