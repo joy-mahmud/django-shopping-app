@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dasgboard</title>
+    <title>dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -34,10 +34,10 @@
                         </td>
                         <td class="py-3 px-5">
                             <div class="flex items-center gap-4">
-                                <a href="" class="text-green-600 hover:text-800">update</a>
-                                <form action="" method="post">
-                                    <button type="submit" class="text-red-600 hover:red-800">delete</button>
-                                </form>
+                                <a href="{% url 'update_product' product.id %}" class="text-green-600 hover:text-800">update</a>
+                           
+                                    <a href="{% url 'delete_product' product.id%}" class="text-red-600 hover:red-800">delete</a>
+                               
                             </div>
                         </td>
                     </tr>

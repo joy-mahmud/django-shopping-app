@@ -5,9 +5,11 @@
                 <li class="mr-[10px] hover:text-white">
                     <a href=" {% url 'home' %}">Home</a>
                 </li>
-                <li class="mr-[10px] hover:text-white">
-                    <a href="{% url 'add_product' %}">Add product</a>
+               {% if request.user.is_superuser %}
+               <li class="mr-[10px] hover:text-white">
+                <a href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
+               {% endif %}
                 <li class="mr-[10px] hover:text-white">
                     <a href="{% url 'cart' %}">Cart</a>
                 </li>
@@ -22,7 +24,7 @@
             {% else %}
                <div class="flex gap-3">
                     <li class="mr-[10px] hover:text-white">
-                        <a href=" {% url 'home' %}">Login</a>
+                        <a href=" {% url 'login' %}">Login</a>
                     </li>
                     <li class="mr-[10px] hover:text-white">
                         <a href="{% url 'register' %}">Register</a>

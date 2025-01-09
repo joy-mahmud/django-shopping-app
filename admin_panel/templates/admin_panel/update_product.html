@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    {% include "main/menu.html" %}
+    <h2 class="text-center font-bold text-2xl my-5 text-green-700">Update product {{product.name}}</h2>
+   <div class="flex justify-center">
+    <form action="" method="post" enctype='multipart/form-data' class="border p-5 rounded-lg shadow-lg" >
+        {% csrf_token %}
+        {% comment %} {{form}} {% endcomment %}
+       <div class='flex flex-col gap-3'>
+            <div class='flex flex-col gap-[5px]'>
+                <label for="id_name">Name:</label>
+                <input type="text" name="name" value={{product.name|default_if_none:""}} maxlength="100" required="" id="id_name" class="border-[2px] rounded-md border-gray-400">   
+            </div>
+            <div class='flex flex-col gap-[5px]'>
+                <label for="id_price">Price:</label>
+                <input type="number" name="price" value={{form.price.value | default_if_none:""}} required="" id="id_price" class="border-[2px] rounded-md border-gray-400">   
+            </div>
+            <div class='flex flex-col gap-[5px]'>
+                <label for="id_quantity">Quantity:</label>
+                <input type="number" name="quantity" value={{form.quantity.value | default_if_none:""}} required="" id="id_quantity" class="border-[2px] rounded-md border-gray-400"> 
+            </div>
+            <div class='flex flex-col gap-[5px]'>
+                <label for="id_image">Image:</label>
+                <input type="file" name="image" id="id_image">   
+            </div>
+            <button type="submit" class="border-[2px] border-black px-3 py-1 rounded-lg mt-[20px] bg-green-300 hover:bg-green-500">Update Product</button>
+       </div>
+
+    </form>
+   </div>
+</body>
+</html>
