@@ -16,15 +16,15 @@
        <div class='flex flex-col gap-3'>
             <div class='flex flex-col gap-[5px]'>
                 <label for="id_name">Name:</label>
-                <input type="text" name="name" value={{product.name|default_if_none:""}} maxlength="100" required="" id="id_name" class="border-[2px] rounded-md border-gray-400">   
+                <input type="text" name="name" value="{{product.name|default_if_none:""}}" maxlength="100" required="" id="id_name" class="border-[2px] rounded-md border-gray-400">   
             </div>
             <div class='flex flex-col gap-[5px]'>
                 <label for="id_price">Price:</label>
-                <input type="number" name="price" value={{form.price.value | default_if_none:""}} required="" id="id_price" class="border-[2px] rounded-md border-gray-400">   
+                <input type="number" name="price" value="{{form.price.value | default_if_none:""}}" required="" id="id_price" class="border-[2px] rounded-md border-gray-400">   
             </div>
             <div class='flex flex-col gap-[5px]'>
                 <label for="id_quantity">Quantity:</label>
-                <input type="number" name="quantity" value={{form.quantity.value | default_if_none:""}} required="" id="id_quantity" class="border-[2px] rounded-md border-gray-400"> 
+                <input type="number" name="quantity" value="{{form.quantity.value | default_if_none:""}}" required="" id="id_quantity" class="border-[2px] rounded-md border-gray-400"> 
             </div>
             <div class='flex flex-col gap-[5px]'>
                 <label for="id_image">Image:</label>
