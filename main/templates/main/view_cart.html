@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cart</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="bg-gray-100">
     {% include "main/menu.html" %}
@@ -41,6 +42,26 @@
         {% endif %}
 
     </div>
+    <div class="flex justify-center mt-10">
+        <button id="checkout-button" class="bg-blue-500 rounded-lg px-3 py-2 text-white">Checkout now</button>
+    </div>
    </div>
+
+   <script>
+    const STRIPE_PUBLIC_KEY="pk_test_51OGypQAhHVSLKzJ67JidouviKl4wfAI9AfO2uOdfi9gQuZPWwCg3trhItVQRJi6DbOn1mGJ3JLqXVn0aTNvbTx2T00jcJQWlFv"
+    var stripe = Stripe(STRIPE_PUBLIC_KEY)
+
+    document.getElementById('checkout-button').addEventListener('click',function(){
+        fetch('http://127.0.0.1:8000/payment/checkout-session/',{
+            method:'POST',
+        })
+        .then(response=>response.json())
+        .then(session=>{
+            return stripe.redirectToCheckout({sessionId:session.id})
+        })
+    })
+
+ 
+   </script>
 </body>
 </html>
