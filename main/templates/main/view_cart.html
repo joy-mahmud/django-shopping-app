@@ -20,6 +20,7 @@
                         <th class="text-left py-2">Quantity</th>
                         <th class="text-left py-2">Price</th>
                         <th class="text-left py-2">Total</th>
+                        <th class="text-left py-2"></th>
                    </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,9 @@
                         <td>{{item.quantity}}</td>
                         <td>${{item.product.price}}</td>
                         <td>${{item.item_total}}</td>
+                        <td>
+                            <a href="{% url 'delete_from_cart' item.product.id %}" class="text-red-500 hover:underline">delete</a>
+                        </td>
                     </tr>
                    
                 {% endfor %}
@@ -54,6 +58,12 @@
     document.getElementById('checkout-button').addEventListener('click',function(){
         fetch('http://127.0.0.1:8000/payment/checkout-session/',{
             method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                amount: {{total_price}} // Ensure {{total_price}} is replaced with the actual value
+            })
         })
         .then(response=>response.json())
         .then(session=>{

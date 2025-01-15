@@ -72,5 +72,12 @@ def view_cart(request):
     total_price = items.aggregate(total=Sum('item_total'))['total'] or 0
 
     return render(request,'main/view_cart.html',{'items':items,'total_price':total_price})
+
+@login_required
+def delete_item_from_cart(request,id):
+    cart = Cart.objects.get(user=request.user)
+    cart_item = CartItem.objects.get(cart=cart,product_id=id)
+    cart_item.delete()
+    return redirect('cart')
     
     
